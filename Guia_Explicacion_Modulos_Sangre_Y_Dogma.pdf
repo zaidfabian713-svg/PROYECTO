@@ -1,0 +1,594 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Kids [ 6 0 R 8 0 R 10 0 R 12 0 R ] /Count 4 >>
+endobj
+3 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+4 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+5 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 3918 >>
+stream
+BT
+/F2 14 Tf
+1 0 0 1 42 742 Tm
+(GUÍA EXPLICATIVA DE TODO EL CÓDIGO DIVIDIDA POR MÓDULOS) Tj
+/F2 10 Tf
+1 0 0 1 42 718 Tm
+(Proyecto: Sangre y Dogma: Arena Elemental \(C# / SharpDevelop 5 / Windows Forms\)) Tj
+/F1 10 Tf
+1 0 0 1 42 701 Tm
+(Materia: Algoritmos y Programación I \(ALP-265\) - II Semestre - IUJO Barquisimeto \(Prof.) Tj
+/F1 10 Tf
+1 0 0 1 42 687 Tm
+(Pablo Lucena\). Esta guía desglosa cada archivo \(.cs\) del proyecto con lenguaje sencillo para) Tj
+/F1 10 Tf
+1 0 0 1 42 673 Tm
+(que cualquier integrante del grupo pueda defenderlo línea por línea.) Tj
+/F1 7 Tf
+1 0 0 1 42 656 Tm
+() Tj
+/F2 9 Tf
+1 0 0 1 42 635 Tm
+(----------------------------------------------------------------------) Tj
+/F2 11 Tf
+1 0 0 1 42 620 Tm
+(MÓDULO 1: INICIO Y PORTADA \(Program.cs y PantallaInicioForm.cs\)) Tj
+/F2 9 Tf
+1 0 0 1 42 604 Tm
+(----------------------------------------------------------------------) Tj
+/F1 10 Tf
+1 0 0 1 42 588 Tm
+(1. Program.cs: Es el punto de entrada \(Main\). Abre primero PantallaInicioForm con) Tj
+/F1 10 Tf
+1 0 0 1 42 574 Tm
+(Application.Run\(new PantallaInicioForm\(\)\);) Tj
+/F1 10 Tf
+1 0 0 1 42 557 Tm
+(2. PantallaInicioForm.cs: Tiene un PictureBox \(picPortada\) con Dock = Fill y SizeMode =) Tj
+/F1 10 Tf
+1 0 0 1 42 543 Tm
+(Zoom, y un panel gris sencillo abajo con los botones 'Iniciar Juego' y 'Salir'.) Tj
+/F3 8 Tf
+1 0 0 1 42 528 Tm
+(private void CargarImagenPortada\(\)) Tj
+/F3 8 Tf
+1 0 0 1 42 515 Tm
+({) Tj
+/F3 8 Tf
+1 0 0 1 42 502 Tm
+(try {) Tj
+/F3 8 Tf
+1 0 0 1 42 489 Tm
+(if \(File.Exists\("portada.jpg"\)\) picPortada.Image = Image.FromFile\("portada.jpg"\);) Tj
+/F3 8 Tf
+1 0 0 1 42 476 Tm
+(} catch { }) Tj
+/F3 8 Tf
+1 0 0 1 42 463 Tm
+(}) Tj
+/F1 10 Tf
+1 0 0 1 42 448 Tm
+(¿Cómo defenderlo? Usamos un bloque try/catch sencillo al cargar portada.jpg para que si) Tj
+/F1 10 Tf
+1 0 0 1 42 434 Tm
+(algún día se mueve la imagen de carpeta, el programa no se cierre ni dé error.) Tj
+/F2 9 Tf
+1 0 0 1 42 410 Tm
+(----------------------------------------------------------------------) Tj
+/F2 11 Tf
+1 0 0 1 42 395 Tm
+(MÓDULO 2: MENÚ PRINCIPAL \(MainForm.cs\)) Tj
+/F2 9 Tf
+1 0 0 1 42 379 Tm
+(----------------------------------------------------------------------) Tj
+/F1 10 Tf
+1 0 0 1 42 363 Tm
+(¿Para qué sirve? Tiene el estilo gris clásico de Windows Forms con un GroupBox \('Menú) Tj
+/F1 10 Tf
+1 0 0 1 42 349 Tm
+(Principal'\) y 7 botones que abren cada ventana del proyecto usando ShowDialog\(\).) Tj
+/F3 8 Tf
+1 0 0 1 42 334 Tm
+(public GestorEstructuras Gestor;) Tj
+/F3 8 Tf
+1 0 0 1 42 321 Tm
+(public ConexionBD BaseDatos;) Tj
+/F3 8 Tf
+1 0 0 1 42 308 Tm
+(public MainForm\(\)) Tj
+/F3 8 Tf
+1 0 0 1 42 295 Tm
+({) Tj
+/F3 8 Tf
+1 0 0 1 42 282 Tm
+(InitializeComponent\(\);) Tj
+/F3 8 Tf
+1 0 0 1 42 269 Tm
+(Gestor = new GestorEstructuras\(\);) Tj
+/F3 8 Tf
+1 0 0 1 42 256 Tm
+(BaseDatos = new ConexionBD\(\);) Tj
+/F3 8 Tf
+1 0 0 1 42 243 Tm
+(}) Tj
+/F1 10 Tf
+1 0 0 1 42 228 Tm
+(¿Qué hace cada botón en MainForm?) Tj
+/F1 10 Tf
+1 0 0 1 42 211 Tm
+(- Botón 1 \(BtnModoHistoriaClick\): Abre FormCombate pasando true para pelear contra los) Tj
+/F1 10 Tf
+1 0 0 1 42 197 Tm
+(Duendes.) Tj
+/F1 10 Tf
+1 0 0 1 42 180 Tm
+(- Botón 2 \(BtnModo2JugadoresClick\): Abre FormCombate pasando false para pelear Jugador 1 vs) Tj
+/F1 10 Tf
+1 0 0 1 42 166 Tm
+(Jugador 2.) Tj
+/F1 10 Tf
+1 0 0 1 42 149 Tm
+(- Botón 3 \(MOSTRAR HISTORIA - BtnLoreClick\): Abre FormLore para consultar la pequeña) Tj
+/F1 10 Tf
+1 0 0 1 42 135 Tm
+(historia \(contexto y motivo\) y los atributos de cada personaje.) Tj
+/F1 10 Tf
+1 0 0 1 42 118 Tm
+(- Botón 4 \(BtnGeneradorMazosClick\): Abre FormGeneradorMazos para crear cartas \(suma = 100\) y) Tj
+/F1 10 Tf
+1 0 0 1 42 104 Tm
+(armar los mazos de 5 cartas.) Tj
+/F1 10 Tf
+1 0 0 1 42 87 Tm
+(- Botón 5 \(BtnGestionMazosClick\): Abre FormGestionBD para guardar jugadores y estadísticas) Tj
+/F1 10 Tf
+1 0 0 1 42 73 Tm
+(en SQL.) Tj
+/F1 9 Tf
+1 0 0 1 235 28 Tm
+(Página 1 de 4 - Sangre y Dogma: Arena Elemental) Tj
+ET
+
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 4700 >>
+stream
+BT
+/F1 10 Tf
+1 0 0 1 42 747 Tm
+(- Botón 6 \(BtnCombateRedClick\): Abre FormCombateRed para jugar en red local \(LAN\).) Tj
+/F1 10 Tf
+1 0 0 1 42 730 Tm
+(- Botón 7 \(BtnLeerTxtClick\): Lee el archivo PuntajesMaximos.txt con StreamReader y lo) Tj
+/F1 10 Tf
+1 0 0 1 42 716 Tm
+(muestra en un MessageBox.) Tj
+/F2 9 Tf
+1 0 0 1 42 692 Tm
+(----------------------------------------------------------------------) Tj
+/F2 11 Tf
+1 0 0 1 42 677 Tm
+(MÓDULO 3: CLASES, HERENCIA, POLIMORFISMO Y CÁLCULO \(Personaje.cs\)) Tj
+/F2 9 Tf
+1 0 0 1 42 661 Tm
+(----------------------------------------------------------------------) Tj
+/F1 10 Tf
+1 0 0 1 42 645 Tm
+(¿Para qué sirve? Cumple todo el 1er Cohorte \(POO\). Nota importante: esta clase NO tiene) Tj
+/F1 10 Tf
+1 0 0 1 42 631 Tm
+(ningún MessageBox ni controles visuales, respetando la separación entre lógica y pantalla.) Tj
+/F2 10 Tf
+1 0 0 1 42 611 Tm
+(1. Encapsulamiento con get y set en la clase padre Personaje:) Tj
+/F3 8 Tf
+1 0 0 1 42 596 Tm
+(private int hp;) Tj
+/F3 8 Tf
+1 0 0 1 42 583 Tm
+(private int def;) Tj
+/F3 8 Tf
+1 0 0 1 42 570 Tm
+(private int atk;) Tj
+/F3 8 Tf
+1 0 0 1 42 557 Tm
+(public int HP  { get { return hp; }  set { hp = value; } }) Tj
+/F3 8 Tf
+1 0 0 1 42 544 Tm
+(public int DEF { get { return def; } set { def = value; } }) Tj
+/F3 8 Tf
+1 0 0 1 42 531 Tm
+(public int ATK { get { return atk; } set { atk = value; } }) Tj
+/F1 10 Tf
+1 0 0 1 42 516 Tm
+(Explicación: Los atributos \(id, nombre, elemento, hp, def, atk, ener, esp, emp\) son privados) Tj
+/F1 10 Tf
+1 0 0 1 42 502 Tm
+(\(private\) y se leen o modifican con propiedades públicas get y set. En todos los personajes) Tj
+/F1 10 Tf
+1 0 0 1 42 488 Tm
+(se cumple que HP + DEF + ATK = 100, empiezan con ENER = 2 y ESP = 0.) Tj
+/F2 10 Tf
+1 0 0 1 42 468 Tm
+(2. Método virtual Atacar\(\) — Fórmula de Cálculo y Triángulo Elemental:) Tj
+/F3 8 Tf
+1 0 0 1 42 453 Tm
+(public virtual int Atacar\(Personaje enemigo\)) Tj
+/F3 8 Tf
+1 0 0 1 42 440 Tm
+({) Tj
+/F3 8 Tf
+1 0 0 1 42 427 Tm
+(double danoCalculo = \(double\)\(ATK * ATK\) / \(double\)\(ATK + enemigo.DEF\);) Tj
+/F3 8 Tf
+1 0 0 1 42 414 Tm
+(if \(Elemento == "Viento" && enemigo.Elemento == "Fuego"\) danoCalculo = danoCalculo * 1.5;) Tj
+/F3 8 Tf
+1 0 0 1 42 401 Tm
+(else if \(Elemento == "Fuego" && enemigo.Elemento == "Tierra"\) danoCalculo = danoCalculo * 1.5;) Tj
+/F3 8 Tf
+1 0 0 1 42 388 Tm
+(else if \(Elemento == "Tierra" && enemigo.Elemento == "Agua"\) danoCalculo = danoCalculo * 1.5;) Tj
+/F3 8 Tf
+1 0 0 1 42 375 Tm
+(else if \(Elemento == "Agua" && enemigo.Elemento == "Viento"\) danoCalculo = danoCalculo * 1.5;) Tj
+/F3 8 Tf
+1 0 0 1 42 362 Tm
+(int danoFinal = \(int\)Math.Round\(danoCalculo\);) Tj
+/F3 8 Tf
+1 0 0 1 42 349 Tm
+(if \(danoFinal < 1\) danoFinal = 1;) Tj
+/F3 8 Tf
+1 0 0 1 42 336 Tm
+(enemigo.HP = enemigo.HP - danoFinal;) Tj
+/F3 8 Tf
+1 0 0 1 42 323 Tm
+(return danoFinal;) Tj
+/F3 8 Tf
+1 0 0 1 42 310 Tm
+(}) Tj
+/F1 10 Tf
+1 0 0 1 42 295 Tm
+(¿Cómo explicar la fórmula al profesor? Si restáramos \(ATK - DEF\), cuando la defensa es mayor) Tj
+/F1 10 Tf
+1 0 0 1 42 281 Tm
+(que el ataque daría un daño negativo. Con la división \(ATK * ATK\) / \(ATK + DEF\) aplicamos un) Tj
+/F1 10 Tf
+1 0 0 1 42 267 Tm
+(límite matemático: aunque la defensa rival sea muy grande, el daño se achica acercándose a 0) Tj
+/F1 10 Tf
+1 0 0 1 42 253 Tm
+(pero nunca da negativo. Luego, con if/else revisamos el triángulo elemental \(Viento > Fuego) Tj
+/F1 10 Tf
+1 0 0 1 42 239 Tm
+(> Tierra > Agua > Viento\) y si hay ventaja multiplicamos por 1.5.) Tj
+/F2 10 Tf
+1 0 0 1 42 219 Tm
+(3. Herencia y Polimorfismo \(Protagonista, Duende y CartaEscenario\):) Tj
+/F1 10 Tf
+1 0 0 1 42 202 Tm
+(- Protagonista : Personaje: Hereda de Personaje y agrega el atributo Rol \(Guerrero, Maga,) Tj
+/F1 10 Tf
+1 0 0 1 42 188 Tm
+(Sanador, Alquimista, Brujo\). Usa override en EjecutarHabilidadEspecial\(\) para que cada rol) Tj
+/F1 10 Tf
+1 0 0 1 42 174 Tm
+(haga su propio efecto \(ej. golpe fijo, llamarada doble, curación, ácido o robo de energía\).) Tj
+/F1 10 Tf
+1 0 0 1 42 157 Tm
+(- Duende : Personaje: Hereda de Personaje y agrega Nivel \(1 al 7\). Usa override en) Tj
+/F1 10 Tf
+1 0 0 1 42 143 Tm
+(EjecutarHabilidadEspecial\(\) para pegar según su nivel: 10 + \(Nivel * 3\).) Tj
+/F1 10 Tf
+1 0 0 1 42 126 Tm
+(- CartaEscenario: Tiene AplicarBuffNerf\(\) \(+4 ATK al mismo elemento, -2 DEF al resto\) y) Tj
+/F1 10 Tf
+1 0 0 1 42 112 Tm
+(DispararTerremoto\(\), que revisa si la Empatía \(EMP\) es mayor o igual a 50 para curar \(+10) Tj
+/F1 10 Tf
+1 0 0 1 42 98 Tm
+(HP, +4 DEF\) o quitar vida \(-8 HP\).) Tj
+/F2 9 Tf
+1 0 0 1 42 74 Tm
+(----------------------------------------------------------------------) Tj
+/F1 9 Tf
+1 0 0 1 235 28 Tm
+(Página 2 de 4 - Sangre y Dogma: Arena Elemental) Tj
+ET
+
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 4361 >>
+stream
+BT
+/F2 11 Tf
+1 0 0 1 42 748 Tm
+(MÓDULO 4: ARREGLOS, LISTAS, COLAS, PILAS Y ARCHIVOS TXT \(GestorEstructuras.cs\)) Tj
+/F2 9 Tf
+1 0 0 1 42 732 Tm
+(----------------------------------------------------------------------) Tj
+/F1 10 Tf
+1 0 0 1 42 716 Tm
+(¿Para qué sirve? Cumple el 2do y 3er Cohorte reuniendo todas las estructuras de datos y el) Tj
+/F1 10 Tf
+1 0 0 1 42 702 Tm
+(manejo de archivos .TXT.) Tj
+/F2 10 Tf
+1 0 0 1 42 682 Tm
+(1. Arreglo y Listas dinámicas \(List<T>\):) Tj
+/F3 8 Tf
+1 0 0 1 42 667 Tm
+(public static Personaje[] Catalogo12Personajes = new Personaje[12];) Tj
+/F3 8 Tf
+1 0 0 1 42 654 Tm
+(public List<Personaje> ListaPersonajes;) Tj
+/F3 8 Tf
+1 0 0 1 42 641 Tm
+(public List<Personaje> MazoGuardadoJ1;) Tj
+/F3 8 Tf
+1 0 0 1 42 628 Tm
+(public List<Personaje> MazoGuardadoJ2;) Tj
+/F1 10 Tf
+1 0 0 1 42 613 Tm
+(- Guardamos los 12 personajes base \(3 de Agua, 3 de Tierra, 3 de Viento y 3 de Fuego\) en el) Tj
+/F1 10 Tf
+1 0 0 1 42 599 Tm
+(arreglo Catalogo12Personajes y los pasamos con un ciclo for y .Add\(\) a ListaPersonajes.) Tj
+/F1 10 Tf
+1 0 0 1 42 582 Tm
+(- El método QuitarPersonajeDeMazo\(\) usa explícitamente mazo.Remove\(elegido\) para demostrar) Tj
+/F1 10 Tf
+1 0 0 1 42 568 Tm
+(el borrado en listas.) Tj
+/F2 10 Tf
+1 0 0 1 42 548 Tm
+(2. Colas \(Queue\) y Pila \(Stack\):) Tj
+/F3 8 Tf
+1 0 0 1 42 533 Tm
+(public Queue<Personaje> ColaJugador1;) Tj
+/F3 8 Tf
+1 0 0 1 42 520 Tm
+(public Queue<Personaje> ColaJugador2;) Tj
+/F3 8 Tf
+1 0 0 1 42 507 Tm
+(public Stack<string> PilaHistorial;) Tj
+/F1 10 Tf
+1 0 0 1 42 492 Tm
+(- En PrepararColasCombate\(\) recorremos las listas con foreach y metemos los 5 personajes en) Tj
+/F1 10 Tf
+1 0 0 1 42 478 Tm
+(las Colas con .Enqueue\(\) \(FIFO: el primero en entrar es el primero en salir a pelear con) Tj
+/F1 10 Tf
+1 0 0 1 42 464 Tm
+(.Dequeue\(\)\).) Tj
+/F1 10 Tf
+1 0 0 1 42 447 Tm
+(- PilaHistorial usa .Push\(\) para apilar cada turno del combate \(LIFO\).) Tj
+/F2 10 Tf
+1 0 0 1 42 427 Tm
+(3. Archivos de Texto \(.TXT\) con StreamWriter y StreamReader:) Tj
+/F1 10 Tf
+1 0 0 1 42 410 Tm
+(- GuardarTxt\(\) escribe todas las líneas de la partida en HistorialBatalla.txt.) Tj
+/F1 10 Tf
+1 0 0 1 42 393 Tm
+(- RegistrarPuntajeMaximoTxt\(\) y LeerPuntajesMaximosTxt\(\) escriben y leen el archivo) Tj
+/F1 10 Tf
+1 0 0 1 42 379 Tm
+(PuntajesMaximos.txt.) Tj
+/F2 9 Tf
+1 0 0 1 42 355 Tm
+(----------------------------------------------------------------------) Tj
+/F2 11 Tf
+1 0 0 1 42 340 Tm
+(MÓDULO 5: SIMULADOR DE COMBATE POR TURNOS \(FormCombate.cs\)) Tj
+/F2 9 Tf
+1 0 0 1 42 324 Tm
+(----------------------------------------------------------------------) Tj
+/F1 10 Tf
+1 0 0 1 42 308 Tm
+(¿Para qué sirve? Controla toda la partida local \(1 Jugador vs Duendes o 2 Jugadores\).) Tj
+/F2 10 Tf
+1 0 0 1 42 288 Tm
+(Puntos clave que pide el Enunciado y cómo están hechos:) Tj
+/F1 10 Tf
+1 0 0 1 42 271 Tm
+(1. Sorteo inicial aleatorio: Al abrir la ventana usamos Random aleatorio = new Random\(\);) Tj
+/F1 10 Tf
+1 0 0 1 42 257 Tm
+(Turno = aleatorio.Next\(1, 3\); para decidir al azar quién empieza.) Tj
+/F1 10 Tf
+1 0 0 1 42 240 Tm
+(2. Economía de Energía \(ENER\): Cada personaje empieza con 2 de energía. Atacar cuesta 1) Tj
+/F1 10 Tf
+1 0 0 1 42 226 Tm
+(ENER. Si al jugador todavía le queda energía \(atacante.ENER > 0\), puede volver a actuar en) Tj
+/F1 10 Tf
+1 0 0 1 42 212 Tm
+(su mismo turno o darle a 'Pasar Turno' para ahorrar energía. Al cambiar de turno se suma +1) Tj
+/F1 10 Tf
+1 0 0 1 42 198 Tm
+(ENER.) Tj
+/F1 10 Tf
+1 0 0 1 42 181 Tm
+(3. Habilidad Especial \(ESP\): Se muestra en una ProgressBar \(de 0 a 2\). Está bloqueada en la) Tj
+/F1 10 Tf
+1 0 0 1 42 167 Tm
+(Ronda 1 y tarda 2 turnos en llenarse al 100%. Cuando tiene 2 ESP y 2 ENER, el botón se) Tj
+/F1 10 Tf
+1 0 0 1 42 153 Tm
+(habilita.) Tj
+/F1 10 Tf
+1 0 0 1 42 136 Tm
+(4. Relevos con Cola \(BtnRelevoClick\): Mete al personaje actual al final de la fila con) Tj
+/F1 10 Tf
+1 0 0 1 42 122 Tm
+(ColaJugador1.Enqueue\(CartaJ1\) y saca al siguiente con CartaJ1 = ColaJugador1.Dequeue\(\).) Tj
+/F1 10 Tf
+1 0 0 1 42 105 Tm
+(5. Reloj de turno \(TimerTurnoTick\) y botón MOSTRAR HISTORIA: Da 15 segundos por turno y) Tj
+/F1 10 Tf
+1 0 0 1 42 91 Tm
+(permite pulsar 'MOSTRAR HISTORIA' para leer el contexto y motivo de los dos personajes que) Tj
+/F1 10 Tf
+1 0 0 1 42 77 Tm
+(están peleando.) Tj
+/F1 9 Tf
+1 0 0 1 235 28 Tm
+(Página 3 de 4 - Sangre y Dogma: Arena Elemental) Tj
+ET
+
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 3 0 R /F2 4 0 R /F3 5 0 R >> >> /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 3267 >>
+stream
+BT
+/F2 9 Tf
+1 0 0 1 42 740 Tm
+(----------------------------------------------------------------------) Tj
+/F2 11 Tf
+1 0 0 1 42 725 Tm
+(MÓDULO 6: GENERADOR DE MAZOS Y MOSTRAR HISTORIA \(FormGeneradorMazos.cs y) Tj
+/F2 11 Tf
+1 0 0 1 42 710 Tm
+(FormLore.cs\)) Tj
+/F2 9 Tf
+1 0 0 1 42 694 Tm
+(----------------------------------------------------------------------) Tj
+/F1 10 Tf
+1 0 0 1 42 678 Tm
+(1. FormGeneradorMazos.cs: Permite crear cartas nuevas validando con int.TryParse que sean) Tj
+/F1 10 Tf
+1 0 0 1 42 664 Tm
+(números enteros y comprobando con un if que HP + DEF + ATK sumen exactamente 100:) Tj
+/F3 8 Tf
+1 0 0 1 42 649 Tm
+(int suma = hp + def + atk;) Tj
+/F3 8 Tf
+1 0 0 1 42 636 Tm
+(if \(suma != 100\) { MessageBox.Show\("HP + DEF + ATK debe sumar 100"\); return; }) Tj
+/F1 10 Tf
+1 0 0 1 42 621 Tm
+(También permite a ambos jugadores agregar 5 personajes a su mazo con .Add\(\) o quitar uno) Tj
+/F1 10 Tf
+1 0 0 1 42 607 Tm
+(seleccionado con .Remove\(\).) Tj
+/F1 10 Tf
+1 0 0 1 42 590 Tm
+(2. FormLore.cs \(MOSTRAR HISTORIA\): Muestra la pequeña historia \(contexto y motivo\) guardada) Tj
+/F1 10 Tf
+1 0 0 1 42 576 Tm
+(en la propiedad p.Historia de cada uno de los 12 personajes y 4 escenarios, junto con su) Tj
+/F1 10 Tf
+1 0 0 1 42 562 Tm
+(ficha técnica y el botón 'MOSTRAR HISTORIA'.) Tj
+/F2 9 Tf
+1 0 0 1 42 538 Tm
+(----------------------------------------------------------------------) Tj
+/F2 11 Tf
+1 0 0 1 42 523 Tm
+(MÓDULO 7: BASE DE DATOS SQL Y RED LAN \(ConexionBD.cs, FormGestionBD.cs y) Tj
+/F2 11 Tf
+1 0 0 1 42 508 Tm
+(FormCombateRed.cs\)) Tj
+/F2 9 Tf
+1 0 0 1 42 492 Tm
+(----------------------------------------------------------------------) Tj
+/F2 10 Tf
+1 0 0 1 42 473 Tm
+(1. Base de Datos SQL con Parámetros \(ConexionBD.cs y FormGestionBD.cs\):) Tj
+/F1 10 Tf
+1 0 0 1 42 456 Tm
+(Conecta con SQL Server en 3 tablas simples relacionadas por Clave Primaria \(PK: IdJugador\) y) Tj
+/F1 10 Tf
+1 0 0 1 42 442 Tm
+(Clave Foránea \(FK\): Jugadores, Personajes y Estadisticas. Todas las consultas usan) Tj
+/F1 10 Tf
+1 0 0 1 42 428 Tm
+(SqlParameter para no concatenar texto:) Tj
+/F3 8 Tf
+1 0 0 1 42 413 Tm
+(string sqlJugador = "INSERT INTO Jugadores \(Nombre\) OUTPUT INSERTED.IdJugador VALUES) Tj
+/F3 8 Tf
+1 0 0 1 42 401 Tm
+(\(@Nombre\)";) Tj
+/F3 8 Tf
+1 0 0 1 42 388 Tm
+(SqlCommand cmd1 = new SqlCommand\(sqlJugador, conexion\);) Tj
+/F3 8 Tf
+1 0 0 1 42 375 Tm
+(cmd1.Parameters.Add\(new SqlParameter\("@Nombre", nombreJugador\)\);) Tj
+/F1 10 Tf
+1 0 0 1 42 360 Tm
+(En FormGestionBD.cs se calculan las Partidas Jugadas \(Victorias + Derrotas\) y el Porcentaje) Tj
+/F1 10 Tf
+1 0 0 1 42 346 Tm
+(de Éxito \(\(Victorias / Partidas\) * 100\). Si la PC no tiene SQL Server prendido, el catch) Tj
+/F1 10 Tf
+1 0 0 1 42 332 Tm
+(guarda todo en RespaldoBD.txt para que nunca falle.) Tj
+/F2 10 Tf
+1 0 0 1 42 312 Tm
+(2. Combate en Red LAN \(FormCombateRed.cs\):) Tj
+/F1 10 Tf
+1 0 0 1 42 295 Tm
+(Usa TcpListener \(Servidor - Jugador 1\) y TcpClient \(Cliente - Jugador 2\) en el puerto 5000) Tj
+/F1 10 Tf
+1 0 0 1 42 281 Tm
+(enviando mensajes de texto sencillos separados por comas \(ejemplo: 'ATAQUE,15,Fabian ataca'\)) Tj
+/F1 10 Tf
+1 0 0 1 42 267 Tm
+(que se separan con paquete.Split\(','\).) Tj
+/F1 9 Tf
+1 0 0 1 235 28 Tm
+(Página 4 de 4 - Sangre y Dogma: Arena Elemental) Tj
+ET
+
+endstream
+endobj
+xref
+0 14
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000137 00000 n 
+0000000234 00000 n 
+0000000336 00000 n 
+0000000431 00000 n 
+0000000577 00000 n 
+0000004547 00000 n 
+0000004693 00000 n 
+0000009445 00000 n 
+0000009593 00000 n 
+0000014007 00000 n 
+0000014155 00000 n 
+trailer
+<< /Size 14 /Root 1 0 R >>
+startxref
+17475
+%%EOF
